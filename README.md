@@ -8,6 +8,9 @@ Steps:------------>
    docker build -t backend .
    Command from backend directory, to build backend image
    to run stand alone just run docker image as container or docker compose
+   Docker compose:->
+    docker-compose -f docker-compose-fe_be.yaml up
+
 3) Docker desktop should have kubernetes enabled
    execute k8s-be-service.yaml for creating BE service
    execute k8s-be-deployment.yaml for creating BE deployment
