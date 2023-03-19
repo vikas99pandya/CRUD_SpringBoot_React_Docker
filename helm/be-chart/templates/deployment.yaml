@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: be-deploy
+spec:
+  selector:
+    matchLabels:
+      app: be-deploy
+  replicas: {{ .Values.replicaCount }} # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: be-deploy
+    spec:
+      containers:
+        - name: be-deploy
+          image: backend
+          # Image that will be used to containers in the cluster
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.containerPort }}
+              hostPort: {{ .Values.service.hostPort }}   
+              
+# The port that the container is running on in the cluster
