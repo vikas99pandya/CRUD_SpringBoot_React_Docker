@@ -14,8 +14,17 @@ Steps:------------>
 3) Docker desktop should have kubernetes enabled
    execute k8s-be-service.yaml for creating BE service
    execute k8s-be-deployment.yaml for creating BE deployment
+   
 4) execute k8s-fe-service.yaml for creating FE service
    execute k8s-fe-deployment.yaml for creating FE deployment
+   
+
+Commands:-->
+.. kubectl apply -f k8s-be-service.yaml
+.. kubectl apply -f k8s-be-deployment.yaml
+.. kubectl apply -f k8s-fe-service.yaml
+.. kubectl apply -f k8s-fe-deployment.yaml
+
 
 Services:----------> For FE: LoadBalancer For BE: ClusterIP/NodePort/LoadBalancer
 1) ClusterIP: Communication allowed only within cluster
@@ -52,3 +61,19 @@ https://fullstackwithpr.hashnode.dev/crud-application-tutorial-using-mysql-sprin
 
 
 https://fullstackwithpr.hashnode.dev/crud-application-tutorial-using-mysql-spring-boot-react-hooks-and-docker-part-2
+
+
+------------------ Helm
+install from https://helm.sh/docs/intro/install/
+
+.. for FE & BE create charts
+helm create be-chart
+helm install be-deploy be-chart
+
+helm create fe-chart
+helm install fe-deploy fe-chart
+
+kubectl port-forward deployment/be-deploy 8080:8080
+
+and now use app
+
