@@ -28,7 +28,7 @@ const CustomerHook = (props) => {
 
     return (
         <div>
-            <h2 className="text-center">These Companies are our Customers</h2>
+            <h2 className="text-center">These Companies are our Customers ...</h2>
             <div>
                 <button className="btn btn-primary" onClick={addCustomer}>
                     Add New Customer
