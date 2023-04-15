@@ -31,7 +31,7 @@ Services:----------> For FE: LoadBalancer For BE: ClusterIP/NodePort/LoadBalance
    provide clusterIP: 10.104.24.165 
    and also do below to forward port to external:host
    kubectl port-forward deployment/be-deploy 8080:8080
-   FE url: 'http://localhost:8080 /api/version_1/customers'
+   FE url: 'http://localhost:8080/api/version_1/customers'
 
 2) NodePort: Communication allowed to node from outside world
    type: NodePort
@@ -63,7 +63,7 @@ https://fullstackwithpr.hashnode.dev/crud-application-tutorial-using-mysql-sprin
 https://fullstackwithpr.hashnode.dev/crud-application-tutorial-using-mysql-spring-boot-react-hooks-and-docker-part-2
 
 
------------------- Helm
+--------------------------------------- Helm
 install from https://helm.sh/docs/intro/install/
 
 .. for FE & BE create charts
@@ -76,4 +76,33 @@ helm install fe-deploy fe-chart
 kubectl port-forward deployment/be-deploy 8080:8080
 
 and now use app
+
+--------- uninstall app
+helm uninstall be-deploy (here app name should be provided)
+helm uninstall fe-deploy
+
+
+----------------------------------- Argocd
+https://blog.risingstack.com/argo-cd-kubernetes-tutorial/
+
+this is another tool to provide CD, provide git to deployment to kubernetes cluster.
+its via pull based approach rather than push based of other CD tools
+
+Execute below commands:-->
+
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+kubectl -n argocd port-forward svc/argocd-server 8080:443
+.. This will expose the service on localhost:8080 
+go to this url and sign in screen appears
+username = admin , for password use below command
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+
+.. now sign in into Argocd
+
+
+
+
+
 
